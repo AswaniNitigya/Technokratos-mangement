@@ -19,7 +19,7 @@ export default function GeminiChatbot() {
         method: "POST",
         headers: {
           "Authorization": "Bearer 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",
-          "HTTP-Referer": "http://localhost:5173",
+          "HTTP-Referer": window.location.origin,
           "X-Title": "Technokratos Management System",
           "Content-Type": "application/json"
         },
