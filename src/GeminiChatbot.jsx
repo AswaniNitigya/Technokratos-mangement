@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import './GeminiChatbot.css'; // Ensure you have styles for the chatbot
+import './GeminiChatbot.css';
 
 export default function GeminiChatbot() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Initialize Gemini
-  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_Openroute_API_KEY); // Replace with your key
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -19,19 +15,35 @@ export default function GeminiChatbot() {
     setInput('');
 
     try {
-      // Get the generative model
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      
-      // Generate response
-      const result = await model.generateContent(input);
-      const response = await result.response;
-      const text = response.text();
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer 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",
+          "HTTP-Referer": "http://localhost:5173",
+          "X-Title": "Technokratos Management System",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "model": "deepseek/deepseek-r1-0528:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": input
+            }
+          ]
+        })
+      });
 
-      const botMessage = { text, sender: 'bot' };
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const botMessage = { text: data.choices[0].message.content, sender: 'bot' };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      console.error("Error calling Gemini:", error);
-      const errorMessage = { text: "Sorry, I couldn't process your request.", sender: 'bot' };
+      console.error("Error calling OpenRouter:", error);
+      const errorMessage = { text: "Sorry, I couldn't process your request. Please try again.", sender: 'bot' };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
@@ -40,9 +52,17 @@ export default function GeminiChatbot() {
 
   return (
     <div className="chatbot-container">
-      <h2>Gemini Chatbot</h2>
+      <div className="chatbot-header">
+        <h3>AI Assistant</h3>
+        <button className="close-chatbot" onClick={() => window.close()}>×</button>
+      </div>
       
       <div className="chat-messages">
+        {messages.length === 0 && (
+          <div className="message bot">
+            Hello! I'm your AI assistant. How can I help you today?
+          </div>
+        )}
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.sender}`}>
             {msg.text}
@@ -51,17 +71,19 @@ export default function GeminiChatbot() {
         {isLoading && <div className="message bot">Typing...</div>}
       </div>
 
-      <div className="chat-input">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask me anything..."
-          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-        />
-        <button onClick={handleSend} disabled={isLoading}>
-          {isLoading ? 'Sending...' : 'Send'}
-        </button>
+      <div className="chat-input-container">
+        <div className="chat-input">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Ask me anything..."
+            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+          />
+          <button onClick={handleSend} disabled={isLoading}>
+            {isLoading ? 'Sending...' : 'Send'}
+          </button>
+        </div>
       </div>
     </div>
   );
