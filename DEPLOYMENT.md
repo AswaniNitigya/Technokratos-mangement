@@ -2,10 +2,10 @@
 
 ## ✅ **Fixed Issues for Vercel Deployment:**
 
-### 1. **Live Gallery Images**
-- ✅ Fixed image imports using `new URL()` with `import.meta.url`
-- ✅ Added `/* @vite-ignore */` comments to suppress warnings
-- ✅ Images will now load properly on Vercel
+### 1. **Live Gallery Images** 
+- ✅ **Problem**: Images weren't loading on Vercel due to incorrect import paths
+- ✅ **Solution**: Moved images to `public/assets/` folder and used direct paths
+- ✅ **Result**: All images will now load correctly on Vercel
 
 ### 2. **API Integration**
 - ✅ Updated chatbot to use OpenRouter API
@@ -22,7 +22,7 @@
 1. **Push to GitHub:**
    ```bash
    git add .
-   git commit -m "Fix Vercel deployment issues"
+   git commit -m "Fix Vercel deployment - images in public folder"
    git push origin main
    ```
 
@@ -38,7 +38,7 @@
 
 ## 📋 **What's Working:**
 
-- ✅ **Live Gallery** - All images will load properly
+- ✅ **Live Gallery** - All 20 images will load properly from `/assets/` paths
 - ✅ **AI Chatbot** - OpenRouter API integration
 - ✅ **All Pages** - Responsive design for laptop screens
 - ✅ **Navigation** - Proper routing and state management
@@ -52,14 +52,41 @@
 - **API**: OpenRouter for AI chatbot
 - **Database**: Firebase Firestore
 - **Deployment**: Vercel
+- **Images**: Stored in `public/assets/` for reliable deployment
 
 ## 🎯 **Expected Results:**
 
 After deployment, your website should have:
-- ✅ All images loading in Live Gallery
+- ✅ All images loading in Live Gallery from `/assets/` paths
 - ✅ Working AI chatbot with OpenRouter
 - ✅ Full-width layout on laptop screens
 - ✅ No black bars or layout issues
 - ✅ Proper responsive design
+
+## 📁 **File Structure:**
+```
+public/
+  assets/
+    bugbusters.png
+    byteburst.png
+    Csse-3.png
+    debate.png
+    Ds-sir.png
+    extempore.png
+    GD.png
+    leader.png
+    Mca-selection.png
+    pic-1.png
+    pic-2.png
+    pic-3.png
+    pic4.png
+    pic5.png
+    pic6.png
+    pic7.png
+    pic8.png
+    pic9.png
+    pooja.png
+    techno-celeb.png
+```
 
 The deployment should work seamlessly on Vercel now! 🚀 

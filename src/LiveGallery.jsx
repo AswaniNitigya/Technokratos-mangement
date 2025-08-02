@@ -2,48 +2,28 @@
 import React, { useState } from 'react';
 import './LiveGallery.css';
 
-// Use dynamic imports for images to work properly in production
+// Use public folder paths for images to work reliably in both dev and production
 const images = [
-  /* @vite-ignore */
-  { src: new URL('../assets/bugbusters.png', import.meta.url).href, title: 'Bug Busters Event' },
-  /* @vite-ignore */
-  { src: new URL('../assets/byteburst.png', import.meta.url).href, title: 'Byte Burst Competition' },
-  /* @vite-ignore */
-  { src: new URL('../assets/Csse-3.png', import.meta.url).href, title: 'CSSE Department' },
-  /* @vite-ignore */
-  { src: new URL('../assets/debate.png', import.meta.url).href, title: 'Debate Competition' },
-  /* @vite-ignore */
-  { src: new URL('../assets/Ds-sir.png', import.meta.url).href, title: 'Faculty Interaction' },
-  /* @vite-ignore */
-  { src: new URL('../assets/extempore.png', import.meta.url).href, title: 'Extempore Event' },
-  /* @vite-ignore */
-  { src: new URL('../assets/GD.png', import.meta.url).href, title: 'Group Discussion' },
-  /* @vite-ignore */
-  { src: new URL('../assets/leader.png', import.meta.url).href, title: 'Leadership Workshop' },
-  /* @vite-ignore */
-  { src: new URL('../assets/Mca-selection.png', import.meta.url).href, title: 'MCA Selections' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic-1.png', import.meta.url).href, title: 'Campus Activity' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic-2.png', import.meta.url).href, title: 'Technical Workshop' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic-3.png', import.meta.url).href, title: 'Student Interaction' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic4.png', import.meta.url).href, title: 'College Event' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic5.png', import.meta.url).href, title: 'Guest Lecture' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic6.png', import.meta.url).href, title: 'Seminar Session' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic7.png', import.meta.url).href, title: 'Team Building' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic8.png', import.meta.url).href, title: 'Award Ceremony' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pic9.png', import.meta.url).href, title: 'Cultural Event' },
-  /* @vite-ignore */
-  { src: new URL('../assets/pooja.png', import.meta.url).href, title: 'POPJA Event' },
-  /* @vite-ignore */
-  { src: new URL('../assets/techno-celeb.png', import.meta.url).href, title: 'Tech Celebration' }
+  { src: '/assets/bugbusters.png', title: 'Bug Busters Event' },
+  { src: '/assets/byteburst.png', title: 'Byte Burst Competition' },
+  { src: '/assets/Csse-3.png', title: 'CSSE Department' },
+  { src: '/assets/debate.png', title: 'Debate Competition' },
+  { src: '/assets/Ds-sir.png', title: 'Faculty Interaction' },
+  { src: '/assets/extempore.png', title: 'Extempore Event' },
+  { src: '/assets/GD.png', title: 'Group Discussion' },
+  { src: '/assets/leader.png', title: 'Leadership Workshop' },
+  { src: '/assets/Mca-selection.png', title: 'MCA Selections' },
+  { src: '/assets/pic-1.png', title: 'Campus Activity' },
+  { src: '/assets/pic-2.png', title: 'Technical Workshop' },
+  { src: '/assets/pic-3.png', title: 'Student Interaction' },
+  { src: '/assets/pic4.png', title: 'College Event' },
+  { src: '/assets/pic5.png', title: 'Guest Lecture' },
+  { src: '/assets/pic6.png', title: 'Seminar Session' },
+  { src: '/assets/pic7.png', title: 'Team Building' },
+  { src: '/assets/pic8.png', title: 'Award Ceremony' },
+  { src: '/assets/pic9.png', title: 'Cultural Event' },
+  { src: '/assets/pooja.png', title: 'POPJA Event' },
+  { src: '/assets/techno-celeb.png', title: 'Tech Celebration' }
 ];
 
 const LiveGallery = () => {
