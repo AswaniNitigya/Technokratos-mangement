@@ -635,6 +635,7 @@ html, body {
   border-radius: 8px;
   color: black;
   width: 100%;
+  margin:5rem;
 }
 
 .home-feedback-section h2,
