@@ -163,12 +163,6 @@ function App() {
               </button>
             </div>
 
-            {showChatbot && (
-              <div className="chatbot-container">
-                <GeminiChatbot />
-              </div>
-            )}
-
             <section className="home-feedback-section">
               <h2>Recent Community Feedback</h2>
               {feedbackLoading ? (
@@ -199,6 +193,9 @@ function App() {
           </div>
         )}
       </main>
+
+      {/* Render chatbot outside main content for proper positioning */}
+      {showChatbot && <GeminiChatbot onClose={() => setShowChatbot(false)} />}
     </div>
   );
 }
