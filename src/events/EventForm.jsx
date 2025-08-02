@@ -13,7 +13,8 @@ const EventForm = () => {
     phone: '',
     department: '',
     year: '',
-    event: ''
+    event: '',
+    transactionId: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -90,7 +91,8 @@ const EventForm = () => {
         phone: '',
         department: '',
         year: '',
-        event: ''
+        event: '',
+        transactionId: ''
       });
 
       setTimeout(() => setSubmitSuccess(false), 3000);
@@ -258,6 +260,17 @@ const EventForm = () => {
                   ))}
                 </select>
               </div>
+            </div>
+
+            <div className="form-group">
+              <label>Transaction ID (If any T-Shirt is bought)</label>
+              <input
+                type="text"
+                name="transactionId"
+                value={formData.transactionId}
+                onChange={handleChange}
+                placeholder="Enter your transaction ID (optional)"
+              />
             </div>
 
             <button 
