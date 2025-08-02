@@ -90,7 +90,7 @@ const Team = () => {
       <div className="team-cta">
         <h2>Want to Join Our Team?</h2>
         <p>We're always looking for passionate students to contribute to our organization.</p>
-        <button className="cta-button">Contact Us</button>
+        <a href='https://wa.link/j4zm5x'><button className="cta-button" >Contact Us</button></a>
       </div>
     </div>
   );
